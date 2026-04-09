@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>База квартир</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🏠 База квартир</h1>
+
+        <!-- Статистика -->
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-value" id="totalCount">0</span>
+                <span class="stat-label">всего квартир</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="avgPrice">0</span>
+                <span class="stat-label">средняя цена</span>
+            </div>
+        </div>
+
+        <!-- Поиск и фильтры -->
+        <div class="search-panel">
+            <div class="search-row">
+                <input type="text" id="searchId" placeholder="ID квартиры (kvr_101)">
+                <button onclick="searchById()">Найти</button>
+                <button onclick="showAll()">Все квартиры</button>
+                <button onclick="showAddForm()" class="btn-add">+ Добавить</button>
+            </div>
+
+            <div class="filter-row">
+                <select id="filterRooms" onchange="filterApartments()">
+                    <option value="">Все комнаты</option>
+                    <option value="1">1 комната</option>
+                    <option value="2">2 комнаты</option>
+                    <option value="3">3 комнаты</option>
+                    <option value="4">4+ комнат</option>
+                </select>
+
+                <input type="number" id="minPrice" placeholder="Цена от" oninput="filterApartments()">
+                <input type="number" id="maxPrice" placeholder="Цена до" oninput="filterApartments()">
+            </div>
+        </div>
+
+        <!-- Результат поиска -->
+        <div id="searchResult"></div>
+
+        <!-- Список квартир -->
+        <div id="apartmentsList" class="apartments-list"></div>
+    </div>
+
+    <!-- Форма добавления/редактирования -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Добавить квартиру</h3>
+            <input type="text" id="modalId" placeholder="ID (kvr_xxx)">
+            <input type="number" id="modalRooms" placeholder="Комнат">
+            <input type="number" id="modalArea" placeholder="Площадь (м²)" step="0.1">
+            <input type="number" id="modalPrice" placeholder="Цена (₽)">
+            <textarea id="modalAddress" rows="2" placeholder="Адрес"></textarea>
+            <div class="modal-buttons">
+                <button onclick="saveApartment()">Сохранить</button>
+                <button onclick="closeModal()">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
